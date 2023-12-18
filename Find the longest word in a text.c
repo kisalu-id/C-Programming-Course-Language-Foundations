@@ -1,25 +1,24 @@
 #include <stdio.h>
 int main(void) {
-    //ints for loops
-    int i = 0;
-    int t = 0;
-    int l = 0;
-    int j = 0;
-    int nbWords = 0;
+    int i;
+    int nbWords;
     char word[101]; //word itself
-    int length = 0; //length of the word
-    int answer = 0; //do I need that?
+    int length = 0; //length of the word from user input
+    int answer = 0;
     scanf("%d", &nbWords);
     //big loop
+    //find out length
     for (i=0; i<nbWords; i++) {
         scanf("%s", word);
-        while (word[i] != '\0') {
+        while (word[length] != '\0') {
             length++;
         }
-        printf("%d", length);
-        
+        //assign the biggest lenghts of all words as answer
+        if (length>answer) {
+            answer = length;
+        }
     }
-    
+    printf("%d\n", answer);
     return 0;   
 }
 /*
@@ -39,4 +38,5 @@ Input:
 All cats are grey in the dark
 Output:
 4
-Warning: You will be graded on your output, so do not include any print statements that prompt a user for input.*/
+Warning: You will be graded on your output, so do not include any print statements that prompt a user for input.
+*/
