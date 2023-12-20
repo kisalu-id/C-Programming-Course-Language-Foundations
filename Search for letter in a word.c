@@ -31,7 +31,7 @@ int main(void) {
         }
     }
     
-    //print answer, depending on results
+    //print answer depending if || where I found t
     if(!found) {
         printf("-1\n");
     }
