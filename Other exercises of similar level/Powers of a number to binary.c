@@ -1,3 +1,11 @@
+
+/*
+Task:
+Finden Sie alle Dreierpotenzen, deren binäre Notation genau drei Einsen enthält
+Find all powers of 3, whose binary notation contains exactly three ones
+*/
+
+
 /*
 These should've been functions that use pointers - I don't yet know that. Will return later.
 //a function that converts decimal to binary and returns an array
@@ -86,8 +94,3 @@ int main () {
 
 }
 
-/*
-Not from the course, but just something fun that I found.
-Finden Sie alle Dreierpotenzen, deren binäre Notation genau drei Einsen enthält
-Find all powers of 3, whose binary notation contains exactly three ones
-*/
