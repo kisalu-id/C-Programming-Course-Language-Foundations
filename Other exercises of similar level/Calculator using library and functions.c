@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <math.h>
-double add(double, double); //So much functions are just for training
+//So much functions are just for training, I could have only one function with 'switch' there
+double add(double, double);
 double subtr(double, double);
 double mult(double, double);
 double divide(double, double);
@@ -9,13 +10,18 @@ int main()
 {
     double a, b, answer;
     char op;
-    
-    printf("Enter an operator you want to execute:\n");
-    scanf("%c", &op);
-    printf("Enter two numbers:\n");
-    scanf("%lf %lf", &a, &b);
+    printf("Enter what you want to calculate:\n");
+    scanf("%lf %c %lf", &a, &op, &b);
+
     
     switch(op) {
+        case '%':
+            printf("All the number will be converted to integers, sorry 🤪\n");
+            int aa, bb;
+            aa = a + 1e-9;
+            bb = b + 1e-9;
+            answer = aa%bb;
+            break;
         case '^':
             answer = pow(a, b);
             break;
@@ -39,6 +45,8 @@ int main()
             else {
             answer = divide(a, b); }
             break;
+        default:
+            printf("Error\n");
         
     }
     
@@ -49,28 +57,21 @@ int main()
 
 
 double add(double a, double b) {
-    double c;
-    c = a + b;
-    return c;
+    return a + b;
 }
 
 double subtr(double a, double b) {
-    double c;
-    c = a - b;
-    return c;
+    return a - b;
 }
 
 double mult(double a, double b) {
-    double c;
-    c = a * b;
-    return c;
+    return a * b;
 }
     
 double divide(double a, double b) {
-    double c;
     if (b == 0) {
         return 0;}
     else {
-        c = a / b; }
-    return c;
+        return a / b;}
+    
 }
