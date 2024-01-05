@@ -34,14 +34,12 @@ int count(int) {
 */
 //  Note* add user input instead of 3. For some reason this program is unstable, e. g. I input "40" it outputs "0" then "1". Dunno if that's an IDE issue
 #include <stdio.h>
+#define MAX_BITS 32
 int main () {
-    int i, k, temp, powers = 0;
-    int found = 0;
-    int l = 0;
-    int counterOf1s = 0;
+    int powers, found = 0;
     unsigned int endNum = 1;
     unsigned int decimal = 1;
-    int rem [101];
+    int rem [MAX_BITS];
     
     printf("How much powers of 3 you want to check?\n");
     scanf ("%d", &powers);
@@ -49,48 +47,38 @@ int main () {
     //big loop starts here:
     //in case of stack overflow print out an error
     //i = 1 so I can use that as loop counter AND as ("power of %d", i) in my output
-    for (i=1; i<=powers; i++) {
+    for (int i=1; i<=powers; i++) {
         decimal = endNum*3;
         if (decimal/3 != endNum) {
-            printf("Error: stack overflow");
+            printf("\nError: stack overflow. Reached the limit of representable powers. Exiting.\n");
             return 0;
         }
         
-        printf("Power %d of 3 is: %u\n", i, decimal);
+        printf("\nPower %d of 3 is: %u\n", i, decimal);
         endNum = decimal;
         
         //convert decimal to binary; store that in an array
-        for (k=0; decimal>0; k++) {
-            rem[k] = decimal%2;
+        for (int j=0; decimal>0; j++) {
+            rem[j] = decimal%2;
             decimal = decimal/2;
         }
         
-        //an error here, C sees zeros in an array as null terminators. Maybe don't print but just do a sum of all 1's even if the program is unnecessary running many times?
-        /*
-        printf("Binary of %u: ", endNum);
-        while (rem[l] != '\0') {
-        printf("%d ", rem[l]);
-        */
-        
         //count all the 1's in a binary iteration
-        l = 0;
-        counterOf1s = 0;
-        for (l=0; l<32; l++) {
-            if (rem[l] == 1) {
+        int counterOf1s = 0;
+        for (int j = 0; j<MAX_BITS; j++) {
+            if (rem[j] == 1) {
                 counterOf1s++; }
             }
-
+        printf("Sum of 1's of %u in binary iteration is: %d\n", powers, counterOf1s);
+        
         //indicator for checking
         if (counterOf1s == 3) {
             found++; 
-            printf("I FOUND THREE ONES AT A BINARY ITERATION OF  %u!\n", endNum);
-        } 
-    printf("\n");
+            printf("I FOUND THREE ONES AT A BINARY ITERATION OF %u!\n", endNum);
+        }
     }
 
-    printf("How much powers of 3 in binary that contain three ones: %d", found);
+    printf("\nChecked the binary representation for %d powers of 3. Powers of 3 in binary that contain exactly three ones: %d", powers, found);
 
     return 0;
-
 }
-
