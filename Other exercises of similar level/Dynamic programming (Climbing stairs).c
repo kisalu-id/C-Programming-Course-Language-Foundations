@@ -1,0 +1,55 @@
+/*You are climbing a staircase. It takes n steps to reach the top.
+Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?
+
+Example 1:
+Input: n = 2
+Output: 2
+Explanation: There are two ways to climb to the top.
+1. 1 step + 1 step
+2. 2 steps
+
+Example 2:
+Input: n = 3
+Output: 3
+Explanation: There are three ways to climb to the top.
+1. 1 step + 1 step + 1 step
+2. 1 step + 2 steps
+3. 2 steps + 1 step
+
+Constraints:
+1 <= n <= 45
+https://leetcode.com/problems/climbing-stairs/description/
+*/
+
+#include <stdio.h>
+
+int climbing(int);
+
+int main( ) {
+    int n;
+    printf("Enter the number of steps:\n");
+    scanf("%d", &n);
+    
+    int ways = climbing(n);
+    printf("Number of distinct ways to climb to the top of %d stairs: %d\n", n, ways);
+    
+    return 0;
+}
+
+int climbing(int n) {
+
+    if (n == 1 || n == 2) {
+        return n;
+    }
+    //dynamic programming
+    int dp[n+1]; //include all steps from 1 to n
+    dp[1] = 1; //one way to climb one step 
+    dp[2] = 2; //2 ways for 2 steps
+    
+//sum all possible number of ways to reach the i-1 step (starting there you can take 1 more step)
+//and to reach the i-2 step (can take 2 more steps)
+    for (int i=3; i <= n; i++) {
+        dp[i] = dp[i-1] + dp[i-2];
+    }
+    return dp[n];
+} 
